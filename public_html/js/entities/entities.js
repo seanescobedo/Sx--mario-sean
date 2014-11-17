@@ -27,18 +27,21 @@ game.PlayerEntity = me.Entity.extend({
             this.body.vel.x += this.body.accel.x * me.timer.tick;
             //this.renderable.setCurrentAnimation("smallWalk");
             this.flipX(false);
-        }else{
-            this.body.vel.x = 0;
-        }
-        
-        this.body.update(delta);
-        me.collision.check(this, true, this.collideHandler.bind(this), true);
-        
-        if (me.input.isKeyPressed('left')) {
+        }   else if (me.input.isKeyPressed('left')) {
             // this flips the image around
             this.flipX(true);
             this.body.vel.x -= this.body.accel.x * me.timer.tick;
         }
+        else{
+            this.body.vel.x = 0;
+        }
+        
+           
+     
+        
+        this.body.update(delta);
+        me.collision.check(this, true, this.collideHandler.bind(this), true);
+     
         
         if (me.input.isKeyPressed('jump')) {
             if (!this.body.jumping && !this.body.falling) {
