@@ -8,7 +8,7 @@ game.PlayerEntity = me.Entity.extend({
             width: 13,
             height: 35,
             getShape: function(){
-                return (new me.Rect(0, 0, 30, 128)).toPolygon();
+                return (new me.Rect(0, 0, 30, 90)).toPolygon();
             }
         }]);
     
