@@ -9,9 +9,14 @@ game.PlayerEntity = me.Entity.extend({
             height: 35,
             getShape: function(){
                 return (new me.Rect(0, 0, 30, 90)).toPolygon();
+        //^these numbers here can change your hitbox widtth & height^\\
             }
         }]);
-    
+    /*
+     *#########################################################################
+     *-------------------- Animations 4 Da Character -------------------------
+     *#########################################################################
+     */
         this.renderable.addAnimation("idle", [3]);
         this.renderable.addAnimation("smallWalk", [0, 1 , 2, 3, 4, 5], 80);
         
@@ -20,15 +25,19 @@ game.PlayerEntity = me.Entity.extend({
         this.body.setVelocity(5, 20);
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
     },
-    
+    /*
+     *#########################################################################
+     * ---------------- Controls 2 Make Da Character Move --------------------
+     *#########################################################################
+     */
     update: function(delta){
         
         if(me.input.isKeyPressed("right")){
             this.body.vel.x += this.body.accel.x * me.timer.tick;
-            //this.renderable.setCurrentAnimation("smallWalk");
+            //this.renderable.setCurrentAnimation("smallWalk");\\
             this.flipX(false);
         }   else if (me.input.isKeyPressed('left')) {
-            // this flips the image around
+            // this flips the image around\\
             this.flipX(true);
             this.body.vel.x -= this.body.accel.x * me.timer.tick;
         }
@@ -36,8 +45,11 @@ game.PlayerEntity = me.Entity.extend({
             this.body.vel.x = 0;
         }
         
-           
-     
+              //always remember to over look your code\\
+
+        //theres always a reason why your code doesn't work\\
+
+        //look at what you did before your last edit or add on\\
         
         this.body.update(delta);
         me.collision.check(this, true, this.collideHandler.bind(this), true);
@@ -45,9 +57,9 @@ game.PlayerEntity = me.Entity.extend({
         
         if (me.input.isKeyPressed('jump')) {
             if (!this.body.jumping && !this.body.falling) {
-                // he can jump ;P
+                // he can jump ;P\\
                 this.body.vel.y = -this.body.maxVel.y * me.timer.tick;
-                // set the jumping as true if you press up 
+                // set the jumping as true if you press up\\
                 this.body.jumping = true;
             }
  
@@ -65,6 +77,7 @@ game.PlayerEntity = me.Entity.extend({
             this.renderable.setCurrentAnimation("idle");
         }
         
+        //just making him walk fully takes up so much space lol\\
         
          this._super(me.Entity, "update", [delta]);
         return true;
@@ -75,7 +88,11 @@ game.PlayerEntity = me.Entity.extend({
     }
     
 });
-
+/*
+ *##############################################################################
+ *---------------------------- Da Level Triggas -------------------------------
+ *##############################################################################
+ */
 game.LevelTrigger = me.Entity.extend({
     init: function(x, y, settings){
         this._super(me.Entity, 'init', [x, y, settings]);
@@ -84,7 +101,11 @@ game.LevelTrigger = me.Entity.extend({
         this.xSpawn = settings.xSpawn;
         this.ySpawn = settings.ySpawn;
     },
-    
+    /*
+     *##########################################################################
+     *--------------------------- Da Collisions -------------------------------
+     *##########################################################################
+     */
     onCollision: function(){
         this.body.setCollisionMask(me.collision.types.NO_OBJECT);
         me.levelDirector.loadLevel(this.level);

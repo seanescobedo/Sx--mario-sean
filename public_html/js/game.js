@@ -11,13 +11,13 @@ var game = {
 	
 	// Run on page load.
 	"onload" : function () {
-	// Initialize the video.
+	//making the game show up usin' the whole screen width\\
 	if (!me.video.init("screen",  me.video.CANVAS, 1067, 600, true, 1.0)) {
 		alert("Your browser does not support HTML5 canvas.");
 		return;
 	}
 
-	// add "#debug" to the URL to enable the debug Panel
+	// add "#debug" to the URL to enable the debug panel\\
 	if (document.location.hash === "#debug") {
 		window.onReady(function () {
 			me.plugin.register.defer(this, debugPanel, "debug");
@@ -37,8 +37,14 @@ var game = {
 	me.state.change(me.state.LOADING);
 },
 
-	// Run on game resources loaded.
+	// Run on game resources loaded.\\
+        /*
+         *######################################################################
+         *------------------------- Da Game Statez -----------------------------
+         *######################################################################
+         */
 	"loaded" : function () {
+            //adding him again\\
                 me.pool.register("mario", game.PlayerEntity, true);
                 
                 me.pool.register("levelTrigger", game.LevelTrigger);
@@ -46,7 +52,7 @@ var game = {
 		me.state.set(me.state.MENU, new game.TitleScreen());
 		me.state.set(me.state.PLAY, new game.PlayScreen());
 
-		// Start the game.
-		me.state.change(me.state.PLAY);
+		// me.state changes what state you can go in\\
+		me.state.change(me.state.MENU);
 	}
 };
