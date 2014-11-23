@@ -11,12 +11,12 @@ game.TitleScreen = me.ScreenObject.extend({
                     init: function(){
                         this._super(me.Renderable, 'init', [510, 30,
                     me.game.viewport.width, me.game.viewport.height]);
-                        this.font = new me.Font("Arial", 48, "yellowgreen");
+                        this.font = new me.Font("Arial", 48, "orangered");
                     },
                     
                     draw: function(renderer){
-                            this.font.draw(renderer.getContext(), "Super Slim Shady", 450, 130);
-                            this.font.draw(renderer.getContext(), "Click Da Enter Button To Play", 250, 530);
+                            this.font.draw(renderer.getContext(), "Super Slim Shady", 364, 130);
+                            this.font.draw(renderer.getContext(), "Press Da Enter Button To Play", 220, 530);
                     }
                     
                 })));
@@ -34,5 +34,6 @@ game.TitleScreen = me.ScreenObject.extend({
 	 */
 	onDestroyEvent: function() {
 		me.input.unbindKey(me.input.KEY.ENTER);
+                me.event.unsubscribe(this.handler);
 	}
 });

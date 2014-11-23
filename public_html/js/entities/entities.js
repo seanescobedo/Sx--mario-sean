@@ -3,12 +3,12 @@ game.PlayerEntity = me.Entity.extend({
     init: function(x, y, settings){
         this._super(me.Entity, 'init', [x, y, {
             image: "mario",
-            spritewidth: "13",
-            spriteheight: "35",
-            width: 13,
-            height: 35,
+            spritewidth: "64",
+            spriteheight: "64",
+            width: 64,
+            height: 64,
             getShape: function(){
-                return (new me.Rect(0, 0, 30, 90)).toPolygon();
+                return (new me.Rect(0, 0, 20, 56)).toPolygon();
         //^these numbers here can change your hitbox widtth & height^\\
             }
         }]);
@@ -17,12 +17,12 @@ game.PlayerEntity = me.Entity.extend({
      *-------------------- Animations 4 Da Character -------------------------
      *#########################################################################
      */
-        this.renderable.addAnimation("idle", [3]);
-        this.renderable.addAnimation("smallWalk", [0, 1 , 2, 3, 4, 5], 80);
+        this.renderable.addAnimation("idle", [9]);
+        this.renderable.addAnimation("smallWalk", [9, 10, 11, 10, 11, 10, 11], 80);
         
         this.renderable.setCurrentAnimation("idle");
         
-        this.body.setVelocity(5, 20);
+        this.body.setVelocity(1, 20);
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
     },
     /*
@@ -88,6 +88,11 @@ game.PlayerEntity = me.Entity.extend({
     }
     
 });
+
+  
+
+
+
 /*
  *##############################################################################
  *---------------------------- Da Level Triggas -------------------------------
