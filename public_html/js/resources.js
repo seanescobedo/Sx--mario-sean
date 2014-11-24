@@ -8,6 +8,7 @@ game.resources = [
         {name: "meta-tiles", type:"image", src: "data/img/meta-tiles.png"},
         {name: "mario", type:"image", src: "data/img/slimshady.png"},
         {name: "title-screen", type:"image", src: "data/img/back_2.gif"},
+        {name: "gameover-screen", type:"image", src: "data/img/back_2_1.gif"},
 
 	/* Atlases 
 	 * @example
