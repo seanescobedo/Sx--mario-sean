@@ -8,7 +8,7 @@ game.PlayerEntity = me.Entity.extend({
             width: 64,
             height: 64,
             getShape: function(){
-                return (new me.Rect(0, 0, 20, 56)).toPolygon();
+                return (new me.Rect(0, 0, 21, 56)).toPolygon();
         //^these numbers here can change your hitbox widtth & height^\\
             }
         }]);
@@ -22,7 +22,7 @@ game.PlayerEntity = me.Entity.extend({
         
         this.renderable.setCurrentAnimation("idle");
         
-        this.body.setVelocity(1, 20);
+        this.body.setVelocity(2, 20);
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
     },
     /*
