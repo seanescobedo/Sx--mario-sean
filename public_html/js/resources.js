@@ -9,7 +9,8 @@ game.resources = [
         {name: "mario", type:"image", src: "data/img/slimshady.png"},
         {name: "title-screen", type:"image", src: "data/img/back_2.gif"},
         {name: "gameover-screen", type:"image", src: "data/img/back_2_1.gif"},
-
+        {name: "slime", type:"image", src: "data/img/slime-spritesheet.png"},
+        
 	/* Atlases 
 	 * @example
 	 * {name: "example_tps", type: "tps", src: "data/img/example_tps.json"},

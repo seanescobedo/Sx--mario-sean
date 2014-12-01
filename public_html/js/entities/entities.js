@@ -22,7 +22,7 @@ game.PlayerEntity = me.Entity.extend({
         
         this.renderable.setCurrentAnimation("idle");
         
-        this.body.setVelocity(2, 20);
+        this.body.setVelocity(4, 20);
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
     },
     /*
@@ -115,6 +115,27 @@ game.LevelTrigger = me.Entity.extend({
         this.body.setCollisionMask(me.collision.types.NO_OBJECT);
         me.levelDirector.loadLevel(this.level);
         me.state.current().resetPlayer(this.xSpawn, this.ySpawn);
+    }
+    
+});
+
+game.BadGuy = me.Entity.extend({
+    init: function(x, y, settings){
+      this._super(me.Entity, 'init', [x, y, {
+            image: "slime",
+            spritewidth: "60",
+            spriteheight: "28",
+            width: 60,
+            height: 28,
+            getShape: function(){
+                return (new me.Rect(0, 0, 60, 28)).toPolygon();
+        //^these numbers here can change your hitbox widtth & height^\\
+            }
+        }]);  
+    },
+    
+    update: function(delta){
+        
     }
     
 });
