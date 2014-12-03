@@ -22,7 +22,7 @@ game.PlayerEntity = me.Entity.extend({
         
         this.renderable.setCurrentAnimation("idle");
         
-        this.body.setVelocity(4, 20);
+        this.body.setVelocity(3, 20);
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
     },
     /*
@@ -84,7 +84,16 @@ game.PlayerEntity = me.Entity.extend({
     },
     
      collideHandler: function(response){
-        
+         var ydif = this.pos.y - response.b.pos.y;
+         //console.log(ydif);
+         
+        if(response.b.type === 'badguy'){
+            if(ydif <= -43){
+                response.b.alive = false;
+            }else{
+                me.state.change(me.state.MENU);
+            }
+        }
     }
     
 });
@@ -150,7 +159,7 @@ game.BadGuy = me.Entity.extend({
     //this.renderable.addAnimation("run", [0, 1, 2], 80);
     //this.renderable.setCurrentAnimation("run");
     
-    this.body.setVelocity(4, 6);
+    this.body.setVelocity(2, 6);
     },
     
     update: function(delta){
@@ -178,3 +187,22 @@ game.BadGuy = me.Entity.extend({
     }
     
 });
+
+game.Mushroom = me.Entity.extend({
+    init: function(x, y, settings){
+      this._super(me.Entity, 'init', [x, y, {
+            image: "mushroom",
+            spritewidth: "64",
+            spriteheight: "64",
+            width: 64,
+            height: 64,
+            getShape: function(){
+                return (new me.Rect(0, 0, 64, 64)).toPolygon();
+        //^these numbers here can change your hitbox widtth & height^\\
+            }
+        }]);
+    
+     me.collision.check(this);
+     this.type = "mushroom";
+    }
+    });

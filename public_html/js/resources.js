@@ -10,6 +10,7 @@ game.resources = [
         {name: "title-screen", type:"image", src: "data/img/back_2.gif"},
         {name: "gameover-screen", type:"image", src: "data/img/back_2_1.gif"},
         {name: "slime", type:"image", src: "data/img/slime-spritesheet.png"},
+        {name: "mushroom", type:"image", src: "data/img/mushroom.png"},
         
 	/* Atlases 
 	 * @example
