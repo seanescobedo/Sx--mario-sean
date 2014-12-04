@@ -5,13 +5,13 @@ game.PlayScreen = me.ScreenObject.extend({
 	onResetEvent: function() {
 		// reset the score
 		game.data.score = 0;
-                
-                if(me.levelDirector.loadLevel("SeansLevel05")){
-                    
-                }
-                else if(me.levelDirector.loadLevel("SeansLevel05")){
-                    
-                }
+                me.levelDirector.loadLevel("SeansLevel05");
+//                if(me.levelDirector.loadLevel("SeansLevel05")){
+//                    
+//                }
+//                else if(me.levelDirector.loadLevel("SeansLevel05")){
+//                    
+//                }
                  
                 this.resetPlayer(4, 400);
                 
