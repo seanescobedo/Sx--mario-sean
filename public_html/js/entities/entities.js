@@ -17,11 +17,14 @@ game.PlayerEntity = me.Entity.extend({
      *-------------------- Animations 4 Da Character -------------------------
      *#########################################################################
      */
-        this.renderable.addAnimation("idle", [9]);
-        this.renderable.addAnimation("smallWalk", [9, 10, 11, 10, 11, 10, 11], 80);
+        this.renderable.addAnimation("idle", [0]);
+        this.renderable.addAnimation("bigIdle", [9]);
+        this.renderable.addAnimation("smallWalk", [0, 1, 2, 1, 2, 1, 2] , 80);
+        this.renderable.addAnimation("bigWalk", [9, 10, 11, 10, 11, 10, 11], 80);
         
         this.renderable.setCurrentAnimation("idle");
         
+        this.big = false;
         this.body.setVelocity(3, 20);
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
     },
@@ -68,15 +71,25 @@ game.PlayerEntity = me.Entity.extend({
         this.body.update(delta);
         me.collision.check(this, true, this.collideHandler.bind(this), true);
         
-        if(this.body.vel.x !== 0){
-            if(!this.renderable.isCurrentAnimation("smallWalk")) {
-                this.renderable.setCurrentAnimation("smallWalk");
-                this.renderable.setAnimationFrame();
+        if(!this.big){
+            if(this.body.vel.x !== 0){
+                if(!this.renderable.isCurrentAnimation("smallWalk")) {
+                    this.renderable.setCurrentAnimation("smallWalk");
+                    this.renderable.setAnimationFrame();
+                }
+            }else{
+                this.renderable.setCurrentAnimation("idle");
             }
         }else{
-            this.renderable.setCurrentAnimation("idle");
+             if(this.body.vel.x !== 0){
+                if(!this.renderable.isCurrentAnimation("bigWalk")) {
+                    this.renderable.setCurrentAnimation("bigWalk");
+                    this.renderable.setAnimationFrame();
+                }
+            }else{
+                this.renderable.setCurrentAnimation("bigIdle");
+            }
         }
-        
         //just making him walk fully takes up so much space lol\\
         
          this._super(me.Entity, "update", [delta]);
@@ -85,14 +98,23 @@ game.PlayerEntity = me.Entity.extend({
     
      collideHandler: function(response){
          var ydif = this.pos.y - response.b.pos.y;
-         //console.log(ydif);
+         console.log(ydif);
          
         if(response.b.type === 'badguy'){
             if(ydif <= -43){
                 response.b.alive = false;
-            }else{
-                me.state.change(me.state.MENU);
+            }else if(response.b.alive){
+                if(this.big){
+                    this.big = false;
+                    this.body.vel.y -= this.body.accel.y * me.timer.tick;
+                    this.jumping = true;    
+                }else{
+                    me.state.change(me.state.MENU);
+                }
             }
+        }else if(response.b.type === 'mushroom'){
+            this.big = true;
+            me.game.world.removeChild(response.b);
         }
     }
     

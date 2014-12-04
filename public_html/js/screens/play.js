@@ -6,7 +6,7 @@ game.PlayScreen = me.ScreenObject.extend({
 		// reset the score
 		game.data.score = 0;
                 
-                if(me.levelDirector.loadLevel("SeansLevel04")){
+                if(me.levelDirector.loadLevel("SeansLevel05")){
                     
                 }
                 else if(me.levelDirector.loadLevel("SeansLevel05")){
