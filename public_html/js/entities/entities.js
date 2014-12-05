@@ -24,8 +24,14 @@ game.PlayerEntity = me.Entity.extend({
         
         this.renderable.setCurrentAnimation("idle");
         
+        
+        //this variable determines whether mario has hit the mushroom
         this.big = false;
+        
+        //the first number sets speed on x axis, second on y axis
         this.body.setVelocity(3, 20);
+        
+        //The screen(viewport) follows this character's position(pos) on both x and y axis
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
     },
     /*
@@ -35,9 +41,12 @@ game.PlayerEntity = me.Entity.extend({
      */
     update: function(delta){
         
+        //check if right button is pressed
         if(me.input.isKeyPressed("right")){
+            
+            //adds the speed set in the setVelocity method above to our current position and multiplies by timer.tick to make animation smooth
             this.body.vel.x += this.body.accel.x * me.timer.tick;
-            //this.renderable.setCurrentAnimation("smallWalk");\\
+            //This line says to unflip the image if it has been flipped
             this.flipX(false);
         }   else if (me.input.isKeyPressed('left')) {
             // this flips the image around\\
@@ -48,11 +57,6 @@ game.PlayerEntity = me.Entity.extend({
             this.body.vel.x = 0;
         }
         
-              //always remember to over look your code\\
-
-        //theres always a reason why your code doesn't work\\
-
-        //look at what you did before your last edit or add on\\
         
         this.body.update(delta);
         me.collision.check(this, true, this.collideHandler.bind(this), true);
@@ -97,6 +101,7 @@ game.PlayerEntity = me.Entity.extend({
     },
     
      collideHandler: function(response){
+         //ydif is the difference in position between mario and whatever he hit so we can see if Mario jumped on something
          var ydif = this.pos.y - response.b.pos.y;
          console.log(ydif);
          
@@ -195,6 +200,9 @@ game.BadGuy = me.Entity.extend({
                 this.walkLeft = true;
             }
             this.flipX(!this.walkLeft);
+            //We are adding an amount to our current position. 
+            //But, to determine whether we add a positive or negative amount we check whether this.walkLeft is true.
+            //If this.walkLeft is true, we do the code to the left of the :, otherwise we do the code to the right. 
             this.body.vel.x += (this.walkLeft) ? -this.body.accel.x * me.timer.tick : this.body. accel.x * me.timer.tick;
         }else{
             me.game.world.removeChild(this);
