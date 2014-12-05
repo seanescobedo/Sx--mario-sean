@@ -10,6 +10,7 @@ game.resources = [
         {name: "title-screen", type:"image", src: "data/img/back_2.gif"},
         {name: "gameover-screen", type:"image", src: "data/img/back_2_1.gif"},
         {name: "slime", type:"image", src: "data/img/slime-spritesheet.png"},
+        {name: "fly", type:"image", src: "data/img/fly-spritesheet.png"},
         {name: "mushroom", type:"image", src: "data/img/mushroom.png"},
         
 	/* Atlases 
@@ -27,6 +28,7 @@ game.resources = [
           {name: "SeansLevel06", type: "tmx", src: "data/map/level06.tmx"},
           {name: "SeansLevel07", type: "tmx", src: "data/map/level07.tmx"},
           {name: "SeansLevel08", type: "tmx", src: "data/map/level08.tmx"},
+          {name: "SeansLevel09", type: "tmx", src: "data/map/level09.tmx"},
 	/* Background music. 
 	 * @example
 	 * {name: "example_bgm", type: "audio", src: "data/bgm/"},

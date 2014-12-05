@@ -48,7 +48,7 @@
   <object name="Mushroom" x="626" y="359" width="72" height="60"/>
  </objectgroup>
  <objectgroup name="trigger entities">
-  <object name="levelTrigger" x="946" y="404" width="117" height="156">
+  <object name="levelTrigger" x="946" y="404" width="123" height="159">
    <properties>
     <property name="level" value="Seanslevel06"/>
    </properties>
