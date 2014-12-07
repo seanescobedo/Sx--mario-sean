@@ -19,14 +19,17 @@ game.PlayerEntity = me.Entity.extend({
      */
         this.renderable.addAnimation("idle", [0]);
         this.renderable.addAnimation("bigIdle", [9]);
+        this.renderable.addAnimation("bigStarIdle", [12]);
         this.renderable.addAnimation("smallWalk", [0, 1, 2, 1, 2, 1, 2] , 80);
         this.renderable.addAnimation("bigWalk", [9, 10, 11, 10, 11, 10, 11], 80);
+        this.renderable.addAnimation("bigStarWalk", [12, 13, 14, 13, 14, 13, 11], 80);
         
         this.renderable.setCurrentAnimation("idle");
         
         
         //this variable determines whether mario has hit the mushroom
         this.big = false;
+        this.bigStar = false;
         
         //the first number sets speed on x axis, second on y axis
         this.body.setVelocity(3, 20);
@@ -93,7 +96,16 @@ game.PlayerEntity = me.Entity.extend({
             }else{
                 this.renderable.setCurrentAnimation("bigIdle");
             }
+            if(this.body.vel.x !== 0){
+                if(!this.renderable.isCurrentAnimation("bigStarWalk")) {
+                    this.renderable.setCurrentAnimation("bigStarWalk");
+                    this.renderable.setAnimationFrame();
+                }
+            }else{
+                this.renderable.setCurrentAnimation("bigStarIdle");
+            }
         }
+        
         //just making him walk fully takes up so much space lol\\
         
          this._super(me.Entity, "update", [delta]);
@@ -113,14 +125,25 @@ game.PlayerEntity = me.Entity.extend({
                     this.big = false;
                     this.body.vel.y -= this.body.accel.y * me.timer.tick;
                     this.jumping = true;    
-                }else{
+                }else if(this.bigStar){
+                    this.bigStar = false;
+                    this.body.vel.y -= this.body.accel.y * me.timer.tick;
+                    this.jumping = true;    
+                }
+                 else{
                     me.state.change(me.state.MENU);
                 }
             }
         }else if(response.b.type === 'mushroom'){
             this.big = true;
             me.game.world.removeChild(response.b);
+            
         }
+             if (response.b.type === 'star'){
+                this.bigStar = true;
+                me.game.world.removeChild(response.b);
+
+            }
     }
     
 });
@@ -159,12 +182,12 @@ game.BadGuy = me.Entity.extend({
     init: function(x, y, settings){
       this._super(me.Entity, 'init', [x, y, {
             image: "slime",
-            spritewidth: "60",
-            spriteheight: "28",
-            width: 60,
-            height: 28,
+            spritewidth: "64",
+            spriteheight: "64",
+            width: 64,
+            height: 64,
             getShape: function(){
-                return (new me.Rect(0, 0, 60, 28)).toPolygon();
+                return (new me.Rect(0, 0, 64, 64)).toPolygon();
         //^these numbers here can change your hitbox widtth & height^\\
             }
         }]);  
@@ -228,11 +251,31 @@ game.Mushroom = me.Entity.extend({
             height: 64,
             getShape: function(){
                 return (new me.Rect(0, 0, 64, 64)).toPolygon();
+                this.body.setVelocity(1, 6);
         //^these numbers here can change your hitbox widtth & height^\\
             }
         }]);
     
      me.collision.check(this);
      this.type = "mushroom";
+    }
+    });
+    
+    game.Star = me.Entity.extend({
+    init: function(x, y, settings){
+      this._super(me.Entity, 'init', [x, y, {
+            image: "star",
+            spritewidth: "64",
+            spriteheight: "64",
+            width: 64,
+            height: 64,
+            getShape: function(){
+                return (new me.Rect(0, 0, 64, 64)).toPolygon();
+        //^these numbers here can change your hitbox widtth & height^\\
+            }
+        }]);
+    
+     me.collision.check(this);
+     this.type = "star";
     }
     });
