@@ -72,7 +72,7 @@ game.PlayerEntity = me.Entity.extend({
                 // set the jumping as true if you press up\\
                 this.body.jumping = true;
             }
- 
+  
         }
         
         this.body.update(delta);
@@ -125,25 +125,29 @@ game.PlayerEntity = me.Entity.extend({
                     this.big = false;
                     this.body.vel.y -= this.body.accel.y * me.timer.tick;
                     this.jumping = true;    
-                }else if(this.bigStar){
+                }else if(response.b.alive){
+                    if(this.bigStar){
                     this.bigStar = false;
                     this.body.vel.y -= this.body.accel.y * me.timer.tick;
-                    this.jumping = true;    
-                }
-                 else{
+                    this.jumping = true;
+                } 
+                }else{
                     me.state.change(me.state.MENU);
                 }
             }
-        }else if(response.b.type === 'mushroom'){
-            this.big = true;
-            me.game.world.removeChild(response.b);
-            
-        }
-             if (response.b.type === 'star'){
-                this.bigStar = true;
-                me.game.world.removeChild(response.b);
+                }else if(response.b.type === 'mushroom'){
+                    this.big = true;
+                    me.game.world.removeChild(response.b);
 
-            }
+                }
+                 if (response.b.type === 'star'){
+                    this.bigStar = true;
+                    me.game.world.removeChild(response.b);
+                }
+                if (response.b.type === 'coin'){
+                    me.game.world.removeChild(response.b);
+                }
+                
     }
     
 });
@@ -233,6 +237,7 @@ game.BadGuy = me.Entity.extend({
         
         this._super(me.Entity, "update", [delta]);
         return true;  
+        
     },
     
     collideHandler: function(){
@@ -279,3 +284,25 @@ game.Mushroom = me.Entity.extend({
      this.type = "star";
     }
     });
+    
+    game.CoinEntity = me.Entity.extend(
+{    
+
+    init: function (x, y, settings){
+        // call the parent constructor
+        this._super(me.Entity, 'init', [x, y , {
+            image: "coin",
+            spritewidth: "64",
+            spriteheight: "64",
+            width: 64,
+            height: 64,
+            getShape: function(){
+                return (new me.Rect(0, 0, 64, 64)).toPolygon();
+        //^these numbers here can change your hitbox widtth & height^\\
+            }
+        }]);
+     me.collision.check(this);
+     this.type = "coin";
+    }
+
+});

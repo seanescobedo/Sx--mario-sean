@@ -11,7 +11,7 @@ game.TitleScreen = me.ScreenObject.extend({
                     init: function(){
                         this._super(me.Renderable, 'init', [510, 30,
                     me.game.viewport.width, me.game.viewport.height]);
-                        this.font = new me.Font("Arial", 48, "orangered");
+                        this.font = new me.Font("Verdana", 48, "orangered");
                     },
                     
                     draw: function(renderer){
@@ -26,8 +26,11 @@ game.TitleScreen = me.ScreenObject.extend({
                         me.state.change(me.state.PLAY);
                     }
                 });
+    
 	},
 	
+        
+        
 	
 	/**	
 	 *  action to perform when leaving this screen (state change)
@@ -35,5 +38,15 @@ game.TitleScreen = me.ScreenObject.extend({
 	onDestroyEvent: function() {
 		me.input.unbindKey(me.input.KEY.ENTER);
                 me.event.unsubscribe(this.handler);
+                {
+             if(me.audio.isAudioEnable()){
+                console.log("onClick: Stop music!");
+                me.audio.disable();
+            } else {
+                console.log("onClick: Play music!");
+                me.audio.enable();
+            }
+            return true;
+        }
 	}
 });

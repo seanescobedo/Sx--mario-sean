@@ -13,6 +13,7 @@ game.resources = [
         {name: "fly", type:"image", src: "data/img/fly-spritesheet.png"},
         {name: "mushroom", type:"image", src: "data/img/pill_strip3.png"},
         {name: "star", type:"image", src: "data/img/star2.png"},
+         {name: "coin", type:"image", src: "data/img/coin.png"},
         
 	/* Atlases 
 	 * @example
@@ -35,10 +36,10 @@ game.resources = [
 	 * @example
 	 * {name: "example_bgm", type: "audio", src: "data/bgm/"},
 	 */	
-        
+        {name: "music", type: "audio", src: "data/bgm/music.mid"},
 	/* Sound effects. 
 	 * @example
 	 * {name: "example_sfx", type: "audio", src: "data/sfx/"}
 	 */
-        
+        {name: "win", type: "audio", src: "data/sfx/win.wav"},
 ];
