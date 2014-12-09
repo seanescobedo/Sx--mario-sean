@@ -32,7 +32,7 @@ game.PlayerEntity = me.Entity.extend({
         this.bigStar = false;
         
         //the first number sets speed on x axis, second on y axis
-        this.body.setVelocity(3, 20);
+        this.body.setVelocity(4, 20);
         
         //The screen(viewport) follows this character's position(pos) on both x and y axis
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
@@ -43,7 +43,7 @@ game.PlayerEntity = me.Entity.extend({
      *#########################################################################
      */
     update: function(delta){
-        
+        console.log(this.pos.y);
         //check if right button is pressed
         if(me.input.isKeyPressed("right")){
             
@@ -88,15 +88,15 @@ game.PlayerEntity = me.Entity.extend({
                 this.renderable.setCurrentAnimation("idle");
             }
         }else{
-             if(this.body.vel.x !== 0){
+             if(this.body.vel.x !== 0 && !this.bigStar){
                 if(!this.renderable.isCurrentAnimation("bigWalk")) {
                     this.renderable.setCurrentAnimation("bigWalk");
                     this.renderable.setAnimationFrame();
                 }
-            }else{
+            }else if (!this.bigStar){
                 this.renderable.setCurrentAnimation("bigIdle");
             }
-            if(this.body.vel.x !== 0){
+            else if(this.body.vel.x !== 0){
                 if(!this.renderable.isCurrentAnimation("bigStarWalk")) {
                     this.renderable.setCurrentAnimation("bigStarWalk");
                     this.renderable.setAnimationFrame();
@@ -115,25 +115,18 @@ game.PlayerEntity = me.Entity.extend({
      collideHandler: function(response){
          //ydif is the difference in position between mario and whatever he hit so we can see if Mario jumped on something
          var ydif = this.pos.y - response.b.pos.y;
-         console.log(ydif);
+         console.log(ydif + " " + response.b.type);
+         
          
         if(response.b.type === 'badguy'){
-            if(ydif <= -43){
+            if(ydif <= -43  || this.bigStar){
                 response.b.alive = false;
+            }else if(response.b.alive && this.big){
+                this.big = false;
+                    this.body.vel.y -= this.body.accel.y * me.timer.tick;
+                    this.jumping = true; 
             }else if(response.b.alive){
-                if(this.big){
-                    this.big = false;
-                    this.body.vel.y -= this.body.accel.y * me.timer.tick;
-                    this.jumping = true;    
-                }else if(response.b.alive){
-                    if(this.bigStar){
-                    this.bigStar = false;
-                    this.body.vel.y -= this.body.accel.y * me.timer.tick;
-                    this.jumping = true;
-                } 
-                }else{
-                    me.state.change(me.state.MENU);
-                }
+                me.state.change(me.state.MENU);
             }
                 }else if(response.b.type === 'mushroom'){
                     this.big = true;
@@ -292,12 +285,12 @@ game.Mushroom = me.Entity.extend({
         // call the parent constructor
         this._super(me.Entity, 'init', [x, y , {
             image: "coin",
-            spritewidth: "64",
-            spriteheight: "64",
-            width: 64,
-            height: 64,
+            spritewidth: "32",
+            spriteheight: "32",
+            width: 32,
+            height: 32,
             getShape: function(){
-                return (new me.Rect(0, 0, 64, 64)).toPolygon();
+                return (new me.Rect(0, 0, 32, 32)).toPolygon();
         //^these numbers here can change your hitbox widtth & height^\\
             }
         }]);

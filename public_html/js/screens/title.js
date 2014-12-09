@@ -38,15 +38,6 @@ game.TitleScreen = me.ScreenObject.extend({
 	onDestroyEvent: function() {
 		me.input.unbindKey(me.input.KEY.ENTER);
                 me.event.unsubscribe(this.handler);
-                {
-             if(me.audio.isAudioEnable()){
-                console.log("onClick: Stop music!");
-                me.audio.disable();
-            } else {
-                console.log("onClick: Play music!");
-                me.audio.enable();
-            }
-            return true;
-        }
+                
 	}
 });

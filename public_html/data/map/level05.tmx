@@ -47,6 +47,9 @@
  <objectgroup name="CollectableEntities">
   <object name="Mushroom" x="626" y="359" width="72" height="60"/>
   <object name="Coin" x="365" y="362" width="63" height="54"/>
+  <object name="Coin" x="134" y="500" width="75" height="60"/>
+  <object name="Coin" x="215" y="500" width="72" height="60"/>
+  <object name="Coin" x="437" y="359" width="60" height="57"/>
  </objectgroup>
  <objectgroup name="trigger entities">
   <object name="levelTrigger" x="946" y="404" width="123" height="159">

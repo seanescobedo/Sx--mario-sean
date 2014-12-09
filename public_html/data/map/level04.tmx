@@ -49,4 +49,12 @@
   <object name="BadGuy" x="636" y="497" width="264" height="60"/>
   <object name="BadGuy" x="491" y="497" width="147" height="60"/>
  </objectgroup>
+ <objectgroup name="CollectableEntities">
+  <object name="Coin" x="213" y="415" width="63" height="72"/>
+  <object name="Coin" x="282" y="352" width="66" height="66"/>
+  <object name="Coin" x="420" y="418" width="69" height="72"/>
+  <object name="Coin" x="633" y="349" width="69" height="69"/>
+  <object name="Coin" x="771" y="421" width="69" height="66"/>
+  <object name="Coin" x="843" y="493" width="66" height="63"/>
+ </objectgroup>
 </map>
