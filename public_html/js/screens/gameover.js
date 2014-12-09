@@ -11,7 +11,7 @@ game.GameoverScreen = me.ScreenObject.extend({
                     init: function(){
                         this._super(me.Renderable, 'init', [510, 30,
                     me.game.viewport.width, me.game.viewport.height]);
-                        this.font = new me.Font("Arial", 48, "orangered");
+                        this.font = new me.Font("Verdana", 48, "orangered");
                         
                     },
                     

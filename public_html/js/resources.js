@@ -41,5 +41,4 @@ game.resources = [
 	 * @example
 	 * {name: "example_sfx", type: "audio", src: "data/sfx/"}
 	 */
-        
 ];

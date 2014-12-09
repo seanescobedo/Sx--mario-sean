@@ -50,6 +50,13 @@
   <object name="Coin" x="134" y="500" width="75" height="60"/>
   <object name="Coin" x="215" y="500" width="72" height="60"/>
   <object name="Coin" x="437" y="359" width="60" height="57"/>
+  <object name="Coin" x="215" y="316"/>
+  <object name="Coin" x="260" y="316"/>
+  <object name="Coin" x="656" y="262"/>
+  <object name="Coin" x="794" y="394"/>
+  <object name="Coin" x="833" y="466"/>
+  <object name="Coin" x="908" y="412"/>
+  <object name="Coin" x="938" y="490"/>
  </objectgroup>
  <objectgroup name="trigger entities">
   <object name="levelTrigger" x="946" y="404" width="123" height="159">

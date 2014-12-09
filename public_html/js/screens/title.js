@@ -17,14 +17,18 @@ game.TitleScreen = me.ScreenObject.extend({
                     draw: function(renderer){
                             this.font.draw(renderer.getContext(), "Super Slim Shady", 364, 130);
                             this.font.draw(renderer.getContext(), "Press Da Enter Button To Play", 220, 530);
+                            
                     }
                     
                 })));
+                
+                
                 
                 this.handler = me.event.subscribe(me.event.KEYDOWN, function (action, keyCode, edge){
                     if(action === "start"){
                         me.state.change(me.state.PLAY);
                     }
+                    
                 });
     
 	},

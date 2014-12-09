@@ -32,7 +32,7 @@ game.PlayerEntity = me.Entity.extend({
         this.bigStar = false;
         
         //the first number sets speed on x axis, second on y axis
-        this.body.setVelocity(4, 20);
+        this.body.setVelocity(4, 23);
         
         //The screen(viewport) follows this character's position(pos) on both x and y axis
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
@@ -60,7 +60,9 @@ game.PlayerEntity = me.Entity.extend({
             this.body.vel.x = 0;
         }
         
-        
+        if(this.pos.y >= 510){
+            me.state.change(me.state.DEAD);
+        }
         this.body.update(delta);
         me.collision.check(this, true, this.collideHandler.bind(this), true);
      
@@ -71,6 +73,7 @@ game.PlayerEntity = me.Entity.extend({
                 this.body.vel.y = -this.body.maxVel.y * me.timer.tick;
                 // set the jumping as true if you press up\\
                 this.body.jumping = true;
+                
             }
   
         }
@@ -122,11 +125,12 @@ game.PlayerEntity = me.Entity.extend({
             if(ydif <= -43  || this.bigStar){
                 response.b.alive = false;
             }else if(response.b.alive && this.big){
-                this.big = false;
+                console.log(response.b.alive);
+                this.big = true;
                     this.body.vel.y -= this.body.accel.y * me.timer.tick;
                     this.jumping = true; 
             }else if(response.b.alive){
-                me.state.change(me.state.MENU);
+                me.state.change(me.state.DEAD);
             }
                 }else if(response.b.type === 'mushroom'){
                     this.big = true;

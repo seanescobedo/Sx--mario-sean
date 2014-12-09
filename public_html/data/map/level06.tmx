@@ -45,5 +45,18 @@
  </objectgroup>
  <objectgroup name="Collectable Entities">
   <object name="Star" x="911" y="1262" width="66" height="66"/>
+  <object name="Coin" x="659" y="1151" width="21" height="21"/>
+  <object name="Coin" x="728" y="1160"/>
+  <object name="Coin" x="806" y="1160"/>
+  <object name="Coin" x="878" y="1160"/>
+  <object name="Coin" x="944" y="1166"/>
+  <object name="Coin" x="998" y="1154"/>
+  <object name="Coin" x="320" y="1205"/>
+  <object name="Coin" x="449" y="1205"/>
+  <object name="Coin" x="383" y="1136"/>
+  <object name="Coin" x="614" y="1220"/>
+  <object name="Coin" x="746" y="1226"/>
+  <object name="Coin" x="740" y="1280"/>
+  <object name="Coin" x="665" y="1292"/>
  </objectgroup>
 </map>

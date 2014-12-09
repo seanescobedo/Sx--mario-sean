@@ -51,10 +51,15 @@
  </objectgroup>
  <objectgroup name="CollectableEntities">
   <object name="Coin" x="213" y="415" width="63" height="72"/>
-  <object name="Coin" x="282" y="352" width="66" height="66"/>
+  <object name="Mushroom" x="282" y="352" width="66" height="66"/>
   <object name="Coin" x="420" y="418" width="69" height="72"/>
   <object name="Coin" x="633" y="349" width="69" height="69"/>
   <object name="Coin" x="771" y="421" width="69" height="66"/>
   <object name="Coin" x="843" y="493" width="66" height="63"/>
+  <object name="Coin" x="492" y="352" width="66" height="66"/>
+  <object name="Coin" x="582" y="370"/>
+  <object x="719" y="363"/>
+  <object x="761" y="381"/>
+  <object name="Coin" x="407" y="369"/>
  </objectgroup>
 </map>
