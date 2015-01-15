@@ -59,10 +59,9 @@ game.PlayerEntity = me.Entity.extend({
         else{
             this.body.vel.x = 0;
         }
-        
-        if(this.pos.y >= 510){
-            me.state.change(me.state.DEAD);
-        }
+//                if(this.pos.y >= 510){
+//            me.state.change(me.state.DEAD);
+//        }
         this.body.update(delta);
         me.collision.check(this, true, this.collideHandler.bind(this), true);
      

@@ -58,5 +58,6 @@
   <object name="Coin" x="746" y="1226"/>
   <object name="Coin" x="740" y="1280"/>
   <object name="Coin" x="665" y="1292"/>
+  <object name="Mushroom" x="770" y="1260" width="69" height="69"/>
  </objectgroup>
 </map>

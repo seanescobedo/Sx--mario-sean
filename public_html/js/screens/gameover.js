@@ -16,8 +16,8 @@ game.GameoverScreen = me.ScreenObject.extend({
                     },
                     
                     draw: function(renderer){
-                            this.font.draw(renderer.getContext(), "Aww You Killed Slim", 364, 130);
-                            this.font.draw(renderer.getContext(), "Press Da Enter Button To Play Again", 220, 530);
+                            this.font.draw(renderer.getContext(), "Aww You Killed Slim", 320, 130);
+                            this.font.draw(renderer.getContext(), "Press Da Enter Button To Play Again", 120, 530);
                     }
                     
                 })));
